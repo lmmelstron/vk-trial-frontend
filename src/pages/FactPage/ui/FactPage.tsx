@@ -39,14 +39,12 @@ export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
       >
         Fact page
       </PanelHeader>
-
       <Group mode="plain" className={cls.Group}>
         <Fact str={data?.fact} isLoading={isLoading} />
         <Button
           before={
             isLoading && <Spinner size="small" style={{ margin: "20px 0" }} />
           }
-          marginHeight={10}
           stretched
           size="l"
           mode="secondary"
@@ -54,7 +52,7 @@ export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
         >
           Запросить новый факт
         </Button>
-        {isError && <Text color="error">{error.message}</Text>}
+        {isError && <Text className={cls.Error}>{error.message}</Text>}
       </Group>
     </Panel>
   );

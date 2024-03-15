@@ -1,5 +1,7 @@
 .Fact {
   margin-bottom: 10px;
-  min-height: 100px;
-  align-items: start;
+  textarea {
+    min-height: 100px;
+    align-items: start;
+  }
 }
