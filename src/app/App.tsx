@@ -1,7 +1,7 @@
 import { View, SplitLayout, SplitCol } from "@vkontakte/vkui";
 import { useActiveVkuiLocation } from "@vkontakte/vk-mini-apps-router";
 
-import { Home } from "../pages";
+import { Home, FactPage } from "../pages";
 import { DEFAULT_VIEW_PANELS } from "@shared/config/routerConfig/routerConfig";
 
 export const App = () => {
@@ -13,6 +13,7 @@ export const App = () => {
       <SplitCol>
         <View activePanel={activePanel}>
           <Home id={DEFAULT_VIEW_PANELS.HOME} />
+          <FactPage id={DEFAULT_VIEW_PANELS.FACT} />
         </View>
       </SplitCol>
     </SplitLayout>

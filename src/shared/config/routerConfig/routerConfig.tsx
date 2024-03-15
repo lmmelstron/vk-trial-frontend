@@ -12,11 +12,15 @@ export const DEFAULT_VIEW = "default_view";
 
 export enum DEFAULT_VIEW_PANELS {
   HOME = "home",
+  FACT = "fact",
 }
 
 export const routes = RoutesConfig.create([
   createRoot(DEFAULT_ROOT, [
-    createView(DEFAULT_VIEW, [createPanel(DEFAULT_VIEW_PANELS.HOME, "/", [])]),
+    createView(DEFAULT_VIEW, [
+      createPanel(DEFAULT_VIEW_PANELS.HOME, "/", []),
+      createPanel(DEFAULT_VIEW_PANELS.FACT, `/${DEFAULT_VIEW_PANELS.FACT}`, []),
+    ]),
   ]),
 ]);
 
