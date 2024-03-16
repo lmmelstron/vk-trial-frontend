@@ -13,6 +13,7 @@ export const DEFAULT_VIEW = "default_view";
 export enum DEFAULT_VIEW_PANELS {
   HOME = "home",
   FACT = "fact",
+  AGE = "age",
 }
 
 export const routes = RoutesConfig.create([
@@ -20,6 +21,7 @@ export const routes = RoutesConfig.create([
     createView(DEFAULT_VIEW, [
       createPanel(DEFAULT_VIEW_PANELS.HOME, "/", []),
       createPanel(DEFAULT_VIEW_PANELS.FACT, `/${DEFAULT_VIEW_PANELS.FACT}`, []),
+      createPanel(DEFAULT_VIEW_PANELS.AGE, `/${DEFAULT_VIEW_PANELS.AGE}`, []),
     ]),
   ]),
 ]);

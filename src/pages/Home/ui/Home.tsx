@@ -52,7 +52,7 @@ export const Home: FC<NavIdProps> = ({ id }) => {
             stretched
             size="l"
             mode="secondary"
-            onClick={() => routeNavigator.push("persik")}
+            onClick={() => routeNavigator.push(DEFAULT_VIEW_PANELS.AGE)}
           >
             Перейти
           </Button>
