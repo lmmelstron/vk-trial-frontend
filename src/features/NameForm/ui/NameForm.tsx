@@ -1,8 +1,9 @@
 import { FC, memo, useCallback, useRef } from "react";
-import { Button, FormItem, Input, Spinner } from "@vkontakte/vkui";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { Button, Spinner } from "@vkontakte/vkui";
+import { SubmitHandler, useForm } from "react-hook-form";
 import cls from "./NameForm.module.scss";
 import debounce from "lodash.debounce";
+import { NameInput } from "./NameInput";
 
 interface NameFormProps {
   onSubmit: (name: string) => void;
@@ -12,7 +13,6 @@ interface NameFormProps {
 export const NameForm: FC<NameFormProps> = memo((props) => {
   const { onSubmit, isLoading } = props;
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const {
@@ -45,28 +45,7 @@ export const NameForm: FC<NameFormProps> = memo((props) => {
 
   return (
     <form onSubmit={handleSubmit(onCustomSubmit)} className={cls.Form}>
-      <FormItem
-        htmlFor="example"
-        top="📝 Введите своё имя на английском языке"
-        noPadding
-      >
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <Input
-              getRef={inputRef}
-              type="text"
-              value={value}
-              onChange={(e) => onChange(e.target.value.replace(/[^a-z]/gi, ""))}
-              onKeyUp={sumbitByTimeout}
-            />
-          )}
-          name="name"
-        />
-      </FormItem>
+      <NameInput control={control} onKeyUp={sumbitByTimeout} />
       {errors.name && <span>This field is required</span>}
       <Button
         before={

@@ -3,3 +3,5 @@ export interface IAge {
   count: number;
   name: string;
 }
+
+export type TAgeCache = Record<string, IAge>;
