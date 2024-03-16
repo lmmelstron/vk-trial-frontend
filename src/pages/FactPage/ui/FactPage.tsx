@@ -49,6 +49,7 @@ export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
           size="l"
           mode="secondary"
           onClick={requestFact}
+          disabled={isLoading}
         >
           Запросить новый факт
         </Button>
