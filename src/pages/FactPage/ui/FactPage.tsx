@@ -4,8 +4,6 @@ import {
   Group,
   NavIdProps,
   Panel,
-  PanelHeader,
-  PanelHeaderBack,
   Spinner,
   Text,
 } from "@vkontakte/vkui";
@@ -14,12 +12,11 @@ import { Fact, IFact } from "@entities/Fact";
 
 import cls from "./FactPage.module.scss";
 import { factRequest } from "../model/services";
-import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
+import { Header } from "@widgets/index";
 
 interface IFactPageProps extends NavIdProps {}
 
 export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
-  const routeNavigator = useRouteNavigator();
   const queryClient = useQueryClient();
 
   const { isLoading, isError, error, data } = useQuery<IFact>({
@@ -34,11 +31,7 @@ export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
 
   return (
     <Panel id={id}>
-      <PanelHeader
-        before={<PanelHeaderBack onClick={() => routeNavigator.back()} />}
-      >
-        Fact page
-      </PanelHeader>
+      <Header isReturnButton title="Fact page" />
       <Group mode="plain" className={cls.Group}>
         <Fact str={data?.fact} isLoading={isLoading} />
         <Button

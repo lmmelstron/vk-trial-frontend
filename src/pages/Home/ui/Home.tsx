@@ -1,63 +1,16 @@
-import { FC } from "react";
-import {
-  Panel,
-  PanelHeader,
-  Header,
-  Button,
-  Group,
-  Div,
-  NavIdProps,
-} from "@vkontakte/vkui";
-import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
-import { DEFAULT_VIEW_PANELS } from "@shared/config/routerConfig/routerConfig";
+import { FC, memo } from "react";
+import { Panel, NavIdProps } from "@vkontakte/vkui";
+import { Header } from "@widgets/index";
+import { TaskLink } from "./TaskLink";
+import { TASKS } from "../model/types/tasks";
 
-export const Home: FC<NavIdProps> = ({ id }) => {
-  const routeNavigator = useRouteNavigator();
-
+export const Home: FC<NavIdProps> = memo(({ id }) => {
   return (
     <Panel id={id}>
-      <PanelHeader>Home</PanelHeader>
-
-      <Group
-        header={
-          <Header mode="secondary" multiline>
-            Задание 1: запрос факта, с последующей установкой курсора после
-            первого слова.
-          </Header>
-        }
-        mode="plain"
-      >
-        <Div>
-          <Button
-            stretched
-            size="l"
-            mode="secondary"
-            onClick={() => routeNavigator.push(DEFAULT_VIEW_PANELS.FACT)}
-          >
-            Перейти
-          </Button>
-        </Div>
-      </Group>
-      <Group
-        header={
-          <Header mode="secondary" multiline>
-            Задание 2: автоопределение возвраста, на основе введённого значения
-            по истечению таймера или нажатию кнопки.
-          </Header>
-        }
-        mode="plain"
-      >
-        <Div>
-          <Button
-            stretched
-            size="l"
-            mode="secondary"
-            onClick={() => routeNavigator.push(DEFAULT_VIEW_PANELS.AGE)}
-          >
-            Перейти
-          </Button>
-        </Div>
-      </Group>
+      <Header title="Home" />
+      {TASKS.map((el) => (
+        <TaskLink title={el.title} link={el.link} key={el.link} />
+      ))}
     </Panel>
   );
-};
+});
