@@ -29,7 +29,8 @@ export const NameForm: FC<NameFormProps> = memo((props) => {
   const onCustomSubmit = useCallback<SubmitHandler<{ name: string }>>(
     (data) => {
       if (timeout?.current) clearTimeout(timeout.current);
-      return onSubmit(data.name);
+      const normalised = data.name.toLowerCase().trim();
+      return onSubmit(normalised);
     },
     [timeout, onSubmit]
   );
@@ -40,7 +41,7 @@ export const NameForm: FC<NameFormProps> = memo((props) => {
       timeout.current && clearTimeout(timeout.current);
       timeout.current = setTimeout(() => onCustomSubmit(getValues()), 3000);
     }, 100),
-    [onCustomSubmit, getValues]
+    [onCustomSubmit]
   );
 
   return (
