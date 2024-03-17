@@ -6,6 +6,7 @@ import cls from "./AgePage.module.scss";
 import { ageRequest } from "../model/services";
 import { NameForm } from "@features/NameForm";
 import { Header } from "@widgets/index";
+import { AgeMessage } from "./AgeMessage";
 
 interface IAgePageProps extends NavIdProps {}
 
@@ -37,12 +38,7 @@ export const AgePage: FC<IAgePageProps> = memo(({ id }) => {
       <Group mode="plain" className={cls.Group}>
         <NameForm isLoading={isPending} onSubmit={requestFact} />
 
-        {data && (
-          <Text>
-            Ваш возвраст:{" "}
-            {data?.age ? data.age : "будет определён после ввода имени"}
-          </Text>
-        )}
+        {data && <AgeMessage age={data.age} />}
         {isError && <Text className={cls.Error}>{error.message}</Text>}
       </Group>
     </Panel>
