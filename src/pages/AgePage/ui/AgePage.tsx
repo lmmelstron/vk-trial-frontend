@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useRef } from "react";
+import { FC, useCallback, useRef } from "react";
 import { Group, NavIdProps, Panel, Text } from "@vkontakte/vkui";
 import { useMutation } from "@tanstack/react-query";
 
@@ -10,7 +10,7 @@ import { AgeMessage } from "./AgeMessage";
 
 interface IAgePageProps extends NavIdProps {}
 
-export const AgePage: FC<IAgePageProps> = memo(({ id }) => {
+export const AgePage: FC<IAgePageProps> = ({ id }) => {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const { isPending, isError, error, data, mutateAsync, reset } = useMutation({
@@ -43,4 +43,4 @@ export const AgePage: FC<IAgePageProps> = memo(({ id }) => {
       </Group>
     </Panel>
   );
-});
+};

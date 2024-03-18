@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from "react";
+import { FC, useCallback } from "react";
 import {
   Button,
   Group,
@@ -16,7 +16,7 @@ import { Header } from "@widgets/index";
 
 interface IFactPageProps extends NavIdProps {}
 
-export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
+export const FactPage: FC<IFactPageProps> = ({ id }) => {
   const queryClient = useQueryClient();
 
   const { isLoading, isError, error, data } = useQuery<IFact>({
@@ -50,4 +50,4 @@ export const FactPage: FC<IFactPageProps> = memo(({ id }) => {
       </Group>
     </Panel>
   );
-});
+};
